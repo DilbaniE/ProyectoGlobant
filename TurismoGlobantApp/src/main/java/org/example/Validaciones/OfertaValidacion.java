@@ -3,7 +3,7 @@ package org.example.Validaciones;
 import java.util.Date;
 
 public class OfertaValidacion {
-
+//
     public boolean validarTitulo(String titulo){
         return true;
     }
