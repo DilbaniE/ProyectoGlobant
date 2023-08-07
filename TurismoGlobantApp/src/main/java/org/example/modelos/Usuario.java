@@ -1,19 +1,24 @@
 package org.example.modelos;
 
+import org.example.Validaciones.UserValidacion;
+
 public class Usuario {
     private Integer id;
     private String documento;
-    private  String nombre;
+    private  String nombres;
     private String correo;
     private Integer ubicacion;
+
+    //OBJETOS
+    private UserValidacion validacion = new UserValidacion();
 
     public Usuario() {
     }
 
-    public Usuario(Integer id, String documento, String nombre, String correo, Integer ubicacion) {
+    public Usuario(Integer id, String documento, String nombres, String correo, Integer ubicacion) {
         this.id = id;
         this.documento = documento;
-        this.nombre = nombre;
+        this.nombres = nombres;
         this.correo = correo;
         this.ubicacion = ubicacion;
     }
@@ -23,7 +28,7 @@ public class Usuario {
         return "Usuario{" +
                 "id=" + id +
                 ", documento='" + documento + '\'' +
-                ", nombre='" + nombre + '\'' +
+                ", nombres='" + nombres + '\'' +
                 ", correo='" + correo + '\'' +
                 ", ubicacion=" + ubicacion +
                 '}';
@@ -45,12 +50,17 @@ public class Usuario {
         this.documento = documento;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombres(String nombres) {
+        try {
+            this.validacion.validarNombres(nombres);
+            this.nombres = nombres;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public String getCorreo() {
@@ -58,7 +68,12 @@ public class Usuario {
     }
 
     public void setCorreo(String correo) {
-        this.correo = correo;
+        try {
+            this.validacion.validarCorreo(correo);
+            this.correo = correo;
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
     }
 
     public Integer getUbicacion() {
@@ -66,6 +81,11 @@ public class Usuario {
     }
 
     public void setUbicacion(Integer ubicacion) {
-        this.ubicacion = ubicacion;
+        try {
+            this.validacion.validarUbicacion(ubicacion);
+            this.ubicacion = ubicacion;
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
     }
 }

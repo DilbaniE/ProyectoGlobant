@@ -4,6 +4,7 @@ public class LocalValidacion {
 
     public boolean validarNombre(String nombre){
         return true;
+
     }
 
     public boolean validarUbicacion(Integer ubicacion){
@@ -11,6 +12,7 @@ public class LocalValidacion {
     }
 
     public boolean validarDescripcion(String descripcion){
+
         return true;
     }
 }
