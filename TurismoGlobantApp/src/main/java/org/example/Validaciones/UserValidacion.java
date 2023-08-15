@@ -1,5 +1,6 @@
 package org.example.Validaciones;
 
+import org.example.utilidades.Messaje;
 import org.example.utilidades.Util;
 
 public class UserValidacion {
@@ -9,9 +10,9 @@ public class UserValidacion {
 
     public Boolean validarNombres(String nombres) throws  Exception{
         if (!util.buscarCoincidencia(nombres,"[a-zA-Z]+$")){
-            throw  new Exception("Revise el formato del nombre");
+            throw  new Exception(Messaje.FORMATO_NOMBRE.getMessaje());
         } else if (nombres.length() < 10){
-                throw new Exception("Numero de caracterres bede ser mayor a 10") ;
+                throw new Exception(Messaje.LONGITUG_NAME.getMessaje()) ;
         }else{
             return true;
         }
