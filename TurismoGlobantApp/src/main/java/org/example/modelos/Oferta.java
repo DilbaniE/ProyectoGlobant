@@ -1,20 +1,29 @@
 package org.example.modelos;
 
+import org.example.Validaciones.OfertaValidacion;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Oferta {
     private Integer id;
     private String titulo;
     private String descripcion;
-    private Date fechaInicio;
-    private Date fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
     private Double costoPerson;
     private Integer idLocal;
+
+    //para traer el formato
+    //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    OfertaValidacion validacion = new OfertaValidacion();
 
     public Oferta() {
     }
 
-    public Oferta(Integer id, String titulo, String descripcion, Date fechaInicio, Date fechaFin, Double costoPerson, Integer idLocal) {
+    public Oferta(Integer id, String titulo, String descripcion, LocalDate fechaInicio, LocalDate fechaFin, Double costoPerson, Integer idLocal) {
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -50,7 +59,12 @@ public class Oferta {
     }
 
     public void setTitulo(String titulo) {
-        this.titulo = titulo;
+        try {
+            this.validacion.validarTitulo(titulo);
+            this.titulo = titulo;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public String getDescripcion() {
@@ -61,28 +75,47 @@ public class Oferta {
         this.descripcion = descripcion;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setFechaInicio(String fechaInicio) {
+        try {
+            this.validacion.validarFechaInicio(fechaInicio);
+            this.fechaInicio = LocalDate.parse(fechaInicio,formatter);
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
+
     }
 
-    public Date getFechaFin() {
+    public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setFechaFin(String fechaFin) {
+        try {
+            this.validacion.validarFechaFin(fechaFin);
+            this.fechaFin = LocalDate.parse(fechaFin,formatter);
+            this.validacion.validarDiferenciaFecha(this.fechaInicio, this.fechaFin);
+            this.fechaFin = LocalDate.parse(fechaFin);
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public Double getCostoPerson() {
+
         return costoPerson;
     }
 
     public void setCostoPerson(Double costoPerson) {
-        this.costoPerson = costoPerson;
+        try {
+            this.validacion.validarcostoPersona(costoPerson);
+            this.costoPerson = costoPerson;
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
     }
 
     public Integer getIdLocal() {

@@ -8,9 +8,9 @@ public class Util {
         Pattern patron = Pattern.compile(expresionRegular);
         Matcher coincidencia = patron.matcher(cadena);
         if (coincidencia.matches()){
-            return false;
-        } else {
             return true;
+        } else {
+           return false;
         }
     }
 

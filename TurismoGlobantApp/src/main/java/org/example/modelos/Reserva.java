@@ -1,18 +1,23 @@
 package org.example.modelos;
 
-import java.util.Date;
+import org.example.Validaciones.ReservaValidacion;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Reserva {
     private Integer id;
-    private Integer idUsuario;
+    private String idUsuario;
     private Integer idOferta;
     private Double costoTotal;
-    private Date fechaReserva;
+    private LocalDate fechaReserva;
 
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    ReservaValidacion validacion = new ReservaValidacion();
     public Reserva() {
     }
 
-    public Reserva(Integer id, Integer idUsuario, Integer idOferta, Double costoTotal, Date fechaReserva) {
+    public Reserva(Integer id, String idUsuario, Integer idOferta, Double costoTotal, LocalDate fechaReserva) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.idOferta = idOferta;
@@ -39,11 +44,17 @@ public class Reserva {
         this.id = id;
     }
 
-    public Integer getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
+    public void setIdUsuario(String idUsuario) {
+        /*try {
+            this.validacion.validarIduser(idUsuario);
+            this.idUsuario = idUsuario;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }*/
         this.idUsuario = idUsuario;
     }
 
@@ -63,11 +74,16 @@ public class Reserva {
         this.costoTotal = costoTotal;
     }
 
-    public Date getFechaReserva() {
+    public LocalDate getFechaReserva() {
         return fechaReserva;
     }
 
-    public void setFechaReserva(Date fechaReserva) {
-        this.fechaReserva = fechaReserva;
+    public void setFechaReserva(String fechaReserva) {
+        try {
+            this.validacion.validarFechaReserva(fechaReserva);
+            this.fechaReserva = LocalDate.parse(fechaReserva,formatter);
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 }

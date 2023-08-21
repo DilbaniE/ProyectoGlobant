@@ -9,7 +9,7 @@ public class UserValidacion {
 
 
     public Boolean validarNombres(String nombres) throws  Exception{
-        if (!util.buscarCoincidencia(nombres,"[a-zA-Z]+$")){
+        if (!util.buscarCoincidencia(nombres,"^[a-zA-Z ]+$")){
             throw  new Exception(Messaje.FORMATO_NOMBRE.getMessaje());
         } else if (nombres.length() < 10){
                 throw new Exception(Messaje.LONGITUG_NAME.getMessaje()) ;
@@ -18,9 +18,14 @@ public class UserValidacion {
         }
     }
     public Boolean validarCorreo(String correo) throws  Exception{
-        if (!util.buscarCoincidencia(correo, "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")){
-            throw new Exception("revise que su correo es valido");
+
+        String expresionRegular ="^^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        String ex = " ^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,4}$";
+        if (!util.buscarCoincidencia(correo,expresionRegular )){
+
+            throw new Exception(Messaje.CORREO_VALIDO.getMessaje());
         }
+
         return true;
     }
 
@@ -28,7 +33,7 @@ public class UserValidacion {
        if(ubicacion.equals(1) || ubicacion.equals(2) || ubicacion.equals(3) || ubicacion.equals(4)){
            return true;
        }else {
-           throw new Exception("señor usuario revise su ubicacion");
+           throw new Exception( Messaje.UBICACON.getMessaje());
        }
     }
 
