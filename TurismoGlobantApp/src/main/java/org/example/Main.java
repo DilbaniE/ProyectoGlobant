@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.modelos.Local;
+import org.example.modelos.Empresa;
 import org.example.modelos.Oferta;
 import org.example.modelos.Reserva;
 import org.example.modelos.Usuario;
@@ -13,7 +13,7 @@ public class Main {
        Scanner teclao = new Scanner(System.in);
        //objeto usuario
         Usuario objetoUsuario = new Usuario();
-        Local objetoLocal =  new Local();
+        Empresa objetoLocal =  new Empresa();
         Oferta objetoOferta = new Oferta();
         Reserva objetoReserva = new Reserva();
 
@@ -63,9 +63,9 @@ public class Main {
         objetoReserva.setFechaReserva( teclao.nextLine());
         System.out.print("el la fecha de reserva es:  "  + objetoReserva.getFechaReserva());*/
 
-        System.out.print("dijite el fecha de reserva en formato dd/MM/yyyy ");
+        /*System.out.print("dijite el fecha de reserva en formato dd/MM/yyyy ");
         objetoReserva.setFechaReserva( teclao.nextLine());
-        System.out.print("el la fecha de reserva es:  "  + objetoReserva.getFechaReserva());
+        System.out.print("el la fecha de reserva es:  "  + objetoReserva.getFechaReserva());*/
 
     }
 }

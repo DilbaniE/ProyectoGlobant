@@ -9,12 +9,16 @@ public class Usuario {
     private String correo;
     private Integer ubicacion;
 
+
     //OBJETOS
     private UserValidacion validacion = new UserValidacion();
 
     public Usuario() {
     }
 
+    public void registrar(){
+
+    }
     public Usuario(Integer id, String documento, String nombres, String correo, Integer ubicacion) {
         this.id = id;
         this.documento = documento;
@@ -56,6 +60,7 @@ public class Usuario {
 
     public void setNombres(String nombres) {
         try {
+
             this.validacion.validarNombres(nombres);
             this.nombres = nombres;
         }catch (Exception error){

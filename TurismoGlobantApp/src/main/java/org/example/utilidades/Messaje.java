@@ -18,8 +18,17 @@ public enum Messaje {
     FECHA_FIN("Revise el formato de la fecha fin, ademas no imposible que la fecha inicio sea supeor a la fecha fin"),
     COSTO_PERSONA("Revise el formato solo numeros positivos"),
 
+    FECHA_RESERVA("Revise el formato fecha reserva"),
+
+    VALIDAR_NEGATIVO("el dato no puede ser negativio"),
+
+    VALIDAR_TOPE("el pago no puede ser mayor a 100000");
+
+
+
     /********************************/
-    FECHA_RESERVA("Revise el formato fecha reserva");
+
+
     private String messaje;
 
     Messaje(String messaje){

@@ -10,7 +10,7 @@ public class OfertaValidacion {
     private Util util = new Util();
 //
     public Boolean validarTitulo(String titulo) throws  Exception{
-        if (titulo.length() > 20) {
+        if (titulo.length() <= 20) {
             throw new Exception(Messaje.TITULO.getMessaje());
         } else {
             return false;
